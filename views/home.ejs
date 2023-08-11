@@ -2,7 +2,35 @@
 <%- include('partials/header.ejs') -%>
     <h1>Home</h1>
 
-<p> <%= content %> </p>
+<p> <%= contentFirst %> </p>
+
+<% posts.forEach(function(post){ %>
+    <section id="cards" class="cards">
+        <% if(locals.posts) { %>
+          <article class="card-item">
+            <h2 class="card-activity">
+              <%= post.title %>
+            </h2>
+            <div class="card-info">
+              <span class="card-type">
+                <%= post.content.substring(0,100) + " ..."%>
+                <a href="/posts/<%=post.title%>">Read more</a>
+              </span>
+            </div>
+          </article>
+        <% } %>
+    
+        <% if(locals.error) { %>
+        <div id="tag-error" class="tag-error">
+          <%= error %>
+        </div>
+        <% } %>
+    </section>
+<% }); %>
+
+
+
+
 
 <%- include('partials/footer.ejs') -%>
 
